@@ -159,6 +159,10 @@ class Zombie:
 
 
     def back_to_boy(self, r=7.0):
+        dx = self.x - common.boy.x
+        dy = self.y - common.boy.y
+        self.rx = self.x + dx
+        self.ry = self.y + dy
         self.move_little_to(self.rx, self.ry)
         if self.distance_big_than(common.boy.x, common.boy.y, self.x, self.y, r):
             return BehaviorTree.SUCCESS
