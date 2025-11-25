@@ -216,7 +216,9 @@ class Zombie:
 
         back_or_wander = Selector('도망 또는 배회', a6, wander)
 
-        root = back_or_chase = Sequence('도망 또는 추적', a7)
+        back_or_chase = Sequence('도망 또는 추적', a7)
+
+        root = back_or_chase_or_wander = Selector('도망 또는 추적 또는 배회', back_or_chase, wander)
 
         self.bt = BehaviorTree(root)
 
