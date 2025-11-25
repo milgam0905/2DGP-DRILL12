@@ -178,9 +178,9 @@ class Zombie:
 
     def move_select(self):
         if self.ball_count < common.boy.ball_count:
-            self.back_to_boy()
+            return self.back_to_boy()
         else:
-            self.move_to_boy()
+            return self.move_to_boy()
 
 
     def build_behavior_tree(self):
