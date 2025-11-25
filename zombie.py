@@ -195,7 +195,9 @@ class Zombie:
 
         patrol_or_chase = Selector('순찰 또는 추적', chase_boy, patrol)
 
-        root = run_or_wander = Selector('도망 또는 배회', a6, wander)
+        root = back_boy = Sequence('소년 가까이 있으면 도망', c1, a6)
+
+        run_or_wander = Selector('도망 또는 배회', a6, wander)
 
         self.bt = BehaviorTree(root)
 
