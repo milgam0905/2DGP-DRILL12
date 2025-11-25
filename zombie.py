@@ -176,6 +176,9 @@ class Zombie:
         self.loc_no = (self.loc_no + 1) % len(self.patrol_locations)
         return BehaviorTree.SUCCESS
 
+    def move_select(self):
+        pass
+
 
     def build_behavior_tree(self):
         # 여기를 채우시오.
@@ -192,6 +195,8 @@ class Zombie:
 
         a6 = Action('소년한테 도망', self.back_to_boy)
 
+        a7 = Action('도망 or 추적', self.move_select)
+
         move_to_target_sequence = Sequence('Move to target', a1, a2)
 
         wander = Sequence('Wander', a3, a2)
@@ -206,7 +211,7 @@ class Zombie:
 
         root = back_boy = Sequence('소년 가까이 있으면 도망', c1, a6)
 
-        run_or_wander = Selector('도망 또는 배회', a6, wander)
+        back_or_wander = Selector('도망 또는 배회', a6, wander)
 
         self.bt = BehaviorTree(root)
 
