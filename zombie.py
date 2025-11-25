@@ -150,7 +150,11 @@ class Zombie:
 
 
     def back_to_boy(self, r=7.0):
-        pass
+        self.move_little_to(common.boy.x, common.boy.y)
+        if not self.distance_less_than(common.boy.x, common.boy.y, self.x, self.y, r):
+            return BehaviorTree.SUCCESS
+        else:
+            return BehaviorTree.RUNNING
 
 
     def get_patrol_location(self):
