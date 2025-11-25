@@ -56,6 +56,10 @@ class Zombie:
 
         self.loc_no = 0
 
+
+        self.rx = self.x + (self.x - common.boy.x)
+        self.ry = self.y + (self.y - common.boy.y)
+
     def get_bb(self):
         return self.x - 50, self.y - 50, self.x + 50, self.y + 50
 
@@ -150,7 +154,7 @@ class Zombie:
 
 
     def back_to_boy(self, r=7.0):
-        self.move_little_to(common.boy.x, common.boy.y)
+        self.move_little_to(self.rx, self.ry)
         if not self.distance_less_than(common.boy.x, common.boy.y, self.x, self.y, r):
             return BehaviorTree.SUCCESS
         else:
