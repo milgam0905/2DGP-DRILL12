@@ -177,7 +177,10 @@ class Zombie:
         return BehaviorTree.SUCCESS
 
     def move_select(self):
-        pass
+        if self.ball_count < common.boy.ball_count:
+            self.back_to_boy()
+        else:
+            self.move_to_boy()
 
 
     def build_behavior_tree(self):
@@ -209,9 +212,11 @@ class Zombie:
 
         patrol_or_chase = Selector('순찰 또는 추적', chase_boy, patrol)
 
-        root = back_boy = Sequence('소년 가까이 있으면 도망', c1, a6)
+        back_boy = Sequence('소년 가까이 있으면 도망', c1, a6)
 
         back_or_wander = Selector('도망 또는 배회', a6, wander)
+
+        root = back_or_chase = Sequence('도망 또는 추적', a7)
 
         self.bt = BehaviorTree(root)
 
