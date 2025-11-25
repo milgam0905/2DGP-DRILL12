@@ -107,6 +107,11 @@ class Zombie:
         distance2 = (x2 - x1) ** 2 + (y2 - y1) ** 2
         return distance2 < (PIXEL_PER_METER * r) ** 2
 
+    def distance_big_than(self, x1, y1, x2, y2, r): #r은 미터단위
+        # 여기를 채우시오.
+        distance2 = (x2 - x1) ** 2 + (y2 - y1) ** 2
+        return distance2 > (PIXEL_PER_METER * r) ** 2
+
 
 
     def move_little_to(self, tx, ty):
@@ -155,7 +160,7 @@ class Zombie:
 
     def back_to_boy(self, r=7.0):
         self.move_little_to(self.rx, self.ry)
-        if not self.distance_less_than(common.boy.x, common.boy.y, self.x, self.y, r):
+        if self.distance_big_than(common.boy.x, common.boy.y, self.x, self.y, r):
             return BehaviorTree.SUCCESS
         else:
             return BehaviorTree.RUNNING
